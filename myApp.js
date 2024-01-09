@@ -1,8 +1,9 @@
 require('dotenv').config();
 let mongoose=require('mongoose');
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const Schema = mongoose.Schema;
 
-const personSchema = new mongoose.Schema({
+const personSchema = new Schema({
   name : {
     type: String,
     required: true,
@@ -11,7 +12,7 @@ const personSchema = new mongoose.Schema({
   favoriteFoods: [String]
 });
 
-const Person1 = mongoose.model('Person1', personSchema);
+const Person = mongoose.model('Person', personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
@@ -67,7 +68,7 @@ const queryChain = (done) => {
 
 //----- **DO NOT EDIT BELOW THIS LINE** ----------------------------------
 
-exports.PersonModel = Person1;
+exports.PersonModel = Person;
 exports.createAndSavePerson = createAndSavePerson;
 exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
