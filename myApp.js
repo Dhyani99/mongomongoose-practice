@@ -28,8 +28,26 @@ const createAndSavePerson = (done) => {
   });
 };
 
+const arrayOfPeople = [
+        {
+          name: 'Dhyani',
+          age: 25,
+          favoriteFoods: ['Rajma','Chinese']
+        },
+        {
+          name: 'Gloria',
+          age: 35,
+          favoriteFoods: ['Lebanese','Colombian']
+        }
+];
+  
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, (err, data) => {
+    if(err) return console.error(err);
+    done(null, data);
+  });
+  
 };
 
 const findPeopleByName = (personName, done) => {
